@@ -1,4 +1,4 @@
-# React + TypeScript + Vite + shadcn/ui
+# React + TypeScript + Vite + Tailwind + shadcn/ui
 
 My starter template with shadcn/ui ready to install new components (the button component is already included). See [shadcn components](https://ui.shadcn.com/docs/components/) for a list of components and installation instructions, or run `npx shadcn-ui@latest add {component name}`.
 
