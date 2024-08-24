@@ -1,4 +1,8 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + shadcn/ui
+
+My starter template with shadcn/ui ready to install new components (the button component is already included). See [shadcn components](https://ui.shadcn.com/docs/components/) for a list of components and installation instructions, or run `npx shadcn-ui@latest add {component name}`.
+
+# Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
