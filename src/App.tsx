@@ -17,6 +17,7 @@ function App() {
         </p>
       </div>
       <a href="https://ui.shadcn.com/docs/components/">shadcn/ui</a>
+      <a href="https://cameronhclark.com">cameronhclark.com</a>
     </div>
   );
 }
