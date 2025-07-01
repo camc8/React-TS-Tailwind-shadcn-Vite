@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { vibes, howBrokeMessages, blameOptions, bankingOptions } from "@/utils";
 import { useExcuse } from "@/hooks/useExcuse";
+import { CopyButton } from "./components/CopyButton";
 
 type Options = {
   vibe?: string;
@@ -69,7 +70,7 @@ function App() {
           {step === 2 && (
             <div className="space-y-12">
               <h2 className="text-3xl font-light">How broke are you?</h2>
-              <div className="bg-slate-100 rounded-xl w-fit mx-auto p-3">
+              <div className="border rounded-xl w-fit mx-auto p-3">
                 <p className="text-2xl">{howBrokeMessages[selectedOptions.howBroke || 6]}</p>
               </div>
               <div className="flex justify-center">
@@ -121,24 +122,26 @@ function App() {
           )}
 
           {step === 4 && (
-            <div className="space-y-4 space-x-4">
+            <div className="space-y-6 space-x-4 grid place-items-center">
               <h2 className="text-3xl font-light">What were you *banking* on?</h2>
-              {bankingOptions.map((opt) => (
-                <Button
-                  key={opt.value}
-                  className="text-lg"
-                  size="lg"
-                  variant="outline"
-                  onClick={() => {
-                    const newOptions = { ...selectedOptions, banking: opt.value };
-                    setSelectedOptions(newOptions);
-                    generateExcuse(newOptions);
-                    next();
-                  }}
-                >
-                  {opt.label}
-                </Button>
-              ))}
+              <div className="flex flex-wrap gap-4 md:w-1/2 justify-center">
+                {bankingOptions.map((opt) => (
+                  <Button
+                    key={opt.value}
+                    className="text-lg"
+                    size="lg"
+                    variant="outline"
+                    onClick={() => {
+                      const newOptions = { ...selectedOptions, banking: opt.value };
+                      setSelectedOptions(newOptions);
+                      generateExcuse(newOptions);
+                      next();
+                    }}
+                  >
+                    {opt.label}
+                  </Button>
+                ))}
+              </div>
               <div>
                 <Button className="text-lg mt-4" onClick={prev}>Go back</Button>
               </div>
@@ -148,14 +151,17 @@ function App() {
           {step === 5 && (
             <div className="space-y-6">
               <h2 className="text-3xl font-light">Here’s your excuse</h2>
-
               {loading && <p className="italic">Generating your excuse…</p>}
-              {excuse && <p className="text-xl w-1/3 mx-auto">{excuse}</p>}
+              {excuse && (
+                <div className="space-y-3">
+                  <p className="text-xl w-1/3 mx-auto rounded-xl p-4 border shadow-lg">{excuse}</p>
+                </div>
+              )}
               {error && <p className="text-red-500">{error}</p>}
-
               <div className="space-x-4">
-                <Button className="text-lg" onClick={prev}>Go back</Button>
-                <Button className="text-lg" onClick={() => generateExcuse(selectedOptions)}>Try Again</Button>
+                <Button className="text-lg" variant={"outline"} onClick={prev}>Go back</Button>
+                {excuse && <CopyButton text={excuse} />}
+                <Button className="text-lg" variant={"outline"} onClick={() => generateExcuse(selectedOptions)}>Try Again</Button>
               </div>
             </div>
           )}
